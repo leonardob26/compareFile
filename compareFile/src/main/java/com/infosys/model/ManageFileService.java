@@ -17,7 +17,7 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
  
 @Service
-public class StorageService {
+public class ManageFileService {
  
 	Logger log = LoggerFactory.getLogger(this.getClass().getName());
 	private final Path location = Paths.get("upload-dir");
