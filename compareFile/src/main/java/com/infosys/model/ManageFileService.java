@@ -46,6 +46,8 @@ public class ManageFileService {
  
 	public String compare(String file1, String file2) throws IOException
     {    
+		boolean areEqual = true;
+		String result;
         BufferedReader reader1 = null;
 		BufferedReader reader2 = null;
 		try {
@@ -54,7 +56,6 @@ public class ManageFileService {
 			String line1 = reader1.readLine();
 			String line2 = reader2.readLine();
 			 
-			boolean areEqual = true;
 			int lineNum = 1;
 			while (line1 != null || line2 != null){
 			    if(line1 == null || line2 == null){
@@ -69,18 +70,18 @@ public class ManageFileService {
 			    lineNum++;
 			}
 			if(areEqual){
-			    System.out.println("Two files have same content.");
+			    result = "Two files have same content.";
 			} else {
-			    System.out.println("Two files have different content. They differ at line "+lineNum);
-			    System.out.println("File1 has "+line1+" and File2 has "+line2+" at line "+lineNum);
+				result = "Two files have different content. They differ at line "+lineNum;
+			    result +="File1 has "+line1+" and File2 has "+line2+" at line "+lineNum;
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			result = "FAILED THE COMPARATION PROCESS";
 		} finally {
 	        reader1.close();
 	        reader2.close();
 		}
-        return "";
+        return result;
     }
 	public void deleteAll() {
 		FileSystemUtils.deleteRecursively(location.toFile());

@@ -1,5 +1,6 @@
 package com.infosys.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +29,19 @@ public class ManageFileController {
 	ManageFileService manageFileService;
  
 	List<String> files = new ArrayList<String>();
- 
+	
+	@GetMapping("/compare/{file1}/{file2}")
+	public ResponseEntity<String> compare(@PathVariable("file1") String file1, @PathVariable("file2") String file2) {
+		String message;
+		try {
+			message = manageFileService.compare(file1, file2);
+			return ResponseEntity.status(HttpStatus.OK).body(message);
+		} catch (IOException e) {
+			message = "FAIL to compare !";
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+		}
+		
+	}
 	@PostMapping("/post")
 	public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
 		String message = "";
