@@ -82,6 +82,9 @@ public class ManageFileService {
 		}
         return "";
     }
+	public void deleteAll() {
+		FileSystemUtils.deleteRecursively(location.toFile());
+	}
 	public void init() {
 		try {
 			Files.createDirectory(location);
