@@ -51,8 +51,8 @@ public class ManageFileService {
         BufferedReader reader1 = null;
 		BufferedReader reader2 = null;
 		try {
-			reader1 = new BufferedReader(new FileReader(file1));
-			reader2 = new BufferedReader(new FileReader(file2));			 
+			reader1 = new BufferedReader(new FileReader(location + "/" + file1));
+			reader2 = new BufferedReader(new FileReader(location + "/"  + file2));			 
 			String line1 = reader1.readLine();
 			String line2 = reader2.readLine();
 			 
